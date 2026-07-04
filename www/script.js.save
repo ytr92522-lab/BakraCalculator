@@ -1,0 +1,114 @@
+// Photo Preview
+document.getElementById("photo").addEventListener("change", function (e) {
+    const file = e.target.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            const preview = document.getElementById("preview");
+            preview.src = event.target.result;
+            preview.style.display = "block";
+        };
+
+        reader.readAsDataURL(file);
+    }
+});
+
+
+// Calculate Weight
+function calculateWeight() {
+
+    let name = document.getElementById("bakraName").value || "Mera Bakra";
+
+    let breed = parseFloat(document.getElementById("breed").value);
+
+    let gender = document.getElementById("gender").value;
+
+    let age = parseInt(document.getElementById("age").value) || 0;
+
+    let girth = parseFloat(document.getElementById("girth").value);
+
+    let length = parseFloat(document.getElementById("length").value);
+
+    let rate = parseFloat(document.getElementById("rate").value);
+
+    if (isNaN(girth) || isNaN(length)) {
+        document.getElementById("result").innerHTML =
+            "⚠️ Chest Girth aur Body Length bharo!";
+        return;
+    }
+
+    // Weight Formula
+    let weight = ((girth * girth * length) / 660) * breed;
+    weight = weight.toFixed(1);
+
+    // Feed & Water
+    let feed = (weight * 0.03).toFixed(2);
+    let water = (weight * 0.10).toFixed(1);
+
+    // Price
+    let priceText = "";
+
+    if (!isNaN(rate)) {
+        let totalPrice = (weight * rate).toFixed(0);
+
+        priceText = `
+        Rate: ₹${rate}/Kg<br>
+        Estimated Price: ₹${totalPrice}<br>
+        `;
+    }
+
+    // Vaccination Advice
+    let vaccine = "";
+
+    if (age < 6) {
+        vaccine = "Vaccination: PPR vaccine ki salah di jati hai.";
+    } else {
+        vaccine = "Vaccination: Regular vaccination schedule follow karein.";
+    }
+
+    document.getElementById("result").innerHTML = `
+        <h2>${name}</h2>
+
+        Gender: ${gender}<br>
+        Age: ${age} Months<br><br>
+
+        Weight: ${weight} Kg<br>
+        Feed: ${feed} Kg/Day<br>
+        Water: ${water} Litre/Day<br><br>
+
+        ${priceText}
+
+        ${vaccine}
+    `;
+}
+
+
+// Auto Save Data
+const inputs = [
+    "bakraName",
+    "breed",
+    "gender",
+    "age",
+    "girth",
+    "length",
+    "rate"
+];
+
+inputs.forEach(id => {
+
+    const el = document.getElementById(id);
+
+    if (localStorage.getItem(id)) {
+        el.value = localStorage.getItem(id);
+    }
+
+    el.addEventListener("input", () => {
+        localStorage.setItem(id, el.value);
+    });
+
+    el.addEventListener("change", () => {
+        localStorage.setItem(id, el.value);
+    });
+}

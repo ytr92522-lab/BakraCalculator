@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakra Weight Calculator V5</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <img src="logo.png" class="logo" alt="Bakra Logo">
+
+    <h1>Bakra Weight Calculator</h1>
+
+    <input
+        type="text"
+        id="bakraName"
+        placeholder="Bakre ka Naam"
+    >
+
+    <label>Breed</label>
+    <select id="breed">
+        <option value="1">Local</option>
+        <option value="1.05">Sirohi</option>
+        <option value="1.10">Jamunapari</option>
+        <option value="0.95">Barbari</option>
+        <option value="1.08">Beetal</option>
+    </select>
+
+    <label>Gender</label>
+    <select id="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+
+    <input
+        type="number"
+        id="age"
+        placeholder="Age (Months)"
+    >
+
+    <h3>Bakre ki Photo Upload Karein</h3>
+
+    <input
+        type="file"
+        id="photo"
+        accept="image/*"
+    >
+
+    <img
+        id="preview"
+        style="display:none;"
+        alt="Preview"
+    >
+
+    <input
+        type="number"
+        id="girth"
+        placeholder="Chest Girth (inch)"
+    >
+
+    <input
+        type="number"
+        id="length"
+        placeholder="Body Length (inch)"
+    >
+
+    <input
+        type="number"
+        id="rate"
+        placeholder="Rate per Kg (Rs)"
+    >
+
+    <button onclick="calculateWeight()">
+        Calculate
+    </button>
+
+    <div class="actions">
+        <button onclick="shareResult()">Share</button>
+        <button onclick="copyResult()">Copy</button>
+        <button onclick="clearData()">Clear</button>
+    </div>
+
+    <div id="result"></div>
+
+    <footer>
+        <p>Bakra Weight Calculator • Version 5.0</p>
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
