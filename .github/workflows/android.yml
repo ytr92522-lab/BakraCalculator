@@ -1,23 +1,12 @@
 name: Build APK
 
-on:
+"on":
   workflow_dispatch:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Create APK Folder
-        run: |
-          mkdir apk
-          cp -r www apk/
-
-      - name: Upload APK Files
-        uses: actions/upload-artifact@v4
-        with:
-          name: BakraCalculator
-          path: apk
+      - name: Hello
+        run: echo "Workflow is working!"
